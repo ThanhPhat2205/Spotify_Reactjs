@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    a {
+        @apply no-underline text-black;
+    }
+}
+body {
+    @apply bg-gray-100 text-white;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .container {
+    @apply max-w-4xl mx-auto p-4;
+  }
+
+  #root {
+    width: 100%;
+
+  }
+  .bg-spotify {
+    background: linear-gradient(180deg, #242424 0%, #000000 10%, #000000 50%, #000000 100%)
+  }

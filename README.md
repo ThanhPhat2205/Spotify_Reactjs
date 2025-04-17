@@ -1,8 +1,11 @@
-cd vào dự án: cd fontend
+
 npm create vite@latest fontend -- --template react-ts
+
 cd vào dự án: cd fontend
+
 *Cài đặc Tailwind css :
 npm install -D tailwindcss@3.4.17 postcss autoprefixer
+
 *Cấu hình tailwind css:
 npx tailwindcss init -p
 

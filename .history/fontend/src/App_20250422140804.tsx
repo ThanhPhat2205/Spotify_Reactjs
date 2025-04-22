@@ -8,7 +8,7 @@ function App() {
   return (
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/regi" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<h1>404 - Không tìm thấy trang</h1>} />
       </Routes>

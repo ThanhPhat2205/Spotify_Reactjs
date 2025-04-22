@@ -15,7 +15,7 @@ return(
                     <Bodycontent />
                     <Footer/>
                 </div>
-                <Musicplayer/>
+                    
             </div>
         </div>
 )

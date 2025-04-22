@@ -45,7 +45,7 @@ const Login = () => {
           Đăng nhập
         </button>
         
-        <Link to="/register" className="text-center mt-4 text-gray-400 hover:text-gray-300 cursor-pointer block">
+        <Link to="/register" className="text-center mt-4 text-gray-400 hover:text-gray-300 cursor-pointer">
           Bạn chưa có tài khoản, Hãy đăng ký
         </Link>
       </div>

@@ -3,7 +3,7 @@ import logo from "../../assets/logo.png";
 import logogo from "../../assets/Google__G__logo.svg.webp";
 import logoface from "../../assets/Facebook_Logo_(2019).png";
 import logoap from "../../assets/images.png";
-import { Link } from 'react-router-dom';
+
 
 const Login = () => {
   return (
@@ -45,9 +45,9 @@ const Login = () => {
           Đăng nhập
         </button>
         
-        <Link to="/register" className="text-center mt-4 text-gray-400 hover:text-gray-300 cursor-pointer block">
-          Bạn chưa có tài khoản, Hãy đăng ký
-        </Link>
+        <p className="text-center mt-4 text-gray-400 hover:text-gray-300 cursor-pointer">
+          Quên mật khẩu của bạn?
+        </p>
       </div>
     </div>
   );

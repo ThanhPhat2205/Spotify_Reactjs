@@ -2,6 +2,7 @@ import Header from "../../../components/header";
 import Bodycontent from "../../../components/Bodycontent";
 import Bodyplay from "../../../components/Bodyplay";
 import Footer from "../../../components/footer";
+import Musicplayer from "../../../components/musicplayer"
 const Homepage: React.FC=()=>{
 return(
         <div className="w-full">

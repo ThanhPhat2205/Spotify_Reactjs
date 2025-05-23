@@ -134,7 +134,6 @@ class ArtistListCreateView(APIView):
 
 class AlbumListCreateView(APIView):
     permission_classes = [AllowAny]
-    parser_classes = [MultiPartParser, FormParser]
     @swagger_auto_schema(
         responses={200: AlbumSerializer(many=True)},
         operation_description="List all albums"
@@ -158,7 +157,6 @@ class AlbumListCreateView(APIView):
 
 class TrackListCreateView(APIView):
     permission_classes = [AllowAny]
-    parser_classes = [MultiPartParser, FormParser]
     @swagger_auto_schema(
         responses={200: TrackSerializer(many=True)},
         operation_description="List all tracks"

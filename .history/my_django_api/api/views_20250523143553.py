@@ -9,7 +9,6 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import Artist, Album, Track
-from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class RegisterView(APIView):
@@ -134,7 +133,6 @@ class ArtistListCreateView(APIView):
 
 class AlbumListCreateView(APIView):
     permission_classes = [AllowAny]
-    parser_classes = [MultiPartParser, FormParser]
     @swagger_auto_schema(
         responses={200: AlbumSerializer(many=True)},
         operation_description="List all albums"
@@ -158,7 +156,6 @@ class AlbumListCreateView(APIView):
 
 class TrackListCreateView(APIView):
     permission_classes = [AllowAny]
-    parser_classes = [MultiPartParser, FormParser]
     @swagger_auto_schema(
         responses={200: TrackSerializer(many=True)},
         operation_description="List all tracks"

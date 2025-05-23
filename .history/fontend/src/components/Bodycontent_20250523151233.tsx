@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, ChangeEvent } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import anh from "../assets/TaylorSwitt.jpg";
 import anh2 from "../assets/Rosé_and_Bruno_Mars_-_Apt..png";
@@ -9,7 +9,7 @@ const Bodycontent: React.FC = () => {
   const [artists, setArtists] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentTrack, setCurrentTrack] = useState<any>(null);
+  const [currentTrack, setCurrentTrack] = useState<any>(null); // Quản lý bài hát đang phát
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +46,7 @@ const Bodycontent: React.FC = () => {
   }
 
   const handlePlay = (track: any) => {
-    setCurrentTrack(track);
+    setCurrentTrack(track); // Chọn bài hát để phát
   };
 
   return (
@@ -89,6 +89,7 @@ const Bodycontent: React.FC = () => {
             <div
               className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
               onClick={() => {
+                // Tìm track của nghệ sĩ này (giả sử lấy track đầu tiên)
                 const artistTrack = tracks.find((t) => t.artists?.some((a: any) => a.id === artist.id));
                 if (artistTrack) handlePlay(artistTrack);
               }}
@@ -117,6 +118,7 @@ const Bodycontent: React.FC = () => {
             <div
               className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
               onClick={() => {
+                // Tìm track của album này (giả sử lấy track đầu tiên)
                 const albumTrack = tracks.find((t) => t.album?.id === album.id);
                 if (albumTrack) handlePlay(albumTrack);
               }}
@@ -170,6 +172,7 @@ const Bodycontent: React.FC = () => {
   );
 };
 
+// Định nghĩa prop cho MusicPlayer
 interface MusicPlayerProps {
   track: any;
 }
@@ -202,7 +205,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
     }
   };
 
-  const handleSeek = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const seekTime = parseFloat(e.target.value);
     if (audioRef.current) {
       audioRef.current.currentTime = seekTime;
@@ -210,6 +213,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
     setCurrentTime(seekTime);
   };
 
+  // Định dạng thời gian
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);

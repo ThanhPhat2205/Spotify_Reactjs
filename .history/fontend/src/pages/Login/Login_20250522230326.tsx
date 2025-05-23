@@ -22,7 +22,7 @@ const Login = () => {
       const { token } = response.data;
       localStorage.setItem("token", token); // Lưu token vào localStorage
       setError("");
-      navigate("/"); // Chuyển hướng sau khi đăng nhập thành công
+      navigate("/dashboard"); // Chuyển hướng sau khi đăng nhập thành công
     } catch (err: any) {
       setError(err.response?.data?.error || "Đăng nhập thất bại. Vui lòng thử lại.");
     }

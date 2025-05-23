@@ -6,25 +6,34 @@ import logoface from "../../assets/Facebook_Logo_(2019).png";
 import logoap from "../../assets/images.png";
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [subscription] = useState("free"); // Mặc định là free
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setError("Mật khẩu xác nhận không khớp.");
+      return;
+    }
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+      const response = await axios.post("http://127.0.0.1:8000/api/register/", {
         username,
+        email,
         password,
+        subscription,
       });
       const { token } = response.data;
       localStorage.setItem("token", token); // Lưu token vào localStorage
       setError("");
-      navigate("/"); // Chuyển hướng sau khi đăng nhập thành công
+      navigate("/dashboard"); // Chuyển hướng sau khi đăng ký thành công
     } catch (err: any) {
-      setError(err.response?.data?.error || "Đăng nhập thất bại. Vui lòng thử lại.");
+      setError(err.response?.data?.error || "Đăng ký thất bại. Vui lòng thử lại.");
     }
   };
 
@@ -34,7 +43,7 @@ const Login = () => {
         <div className="flex justify-center items-center">
           <img src={logo} alt="Spotify" className="w-10 h-15" />
         </div>
-        <h2 className="text-2xl font-bold text-center mb-6">Đăng nhập vào Spotify</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Đăng ký Spotify</h2>
 
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
@@ -54,13 +63,20 @@ const Login = () => {
           Tiếp tục bằng số điện thoại
         </button>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
           <input
             type="text"
-            placeholder="Email hoặc tên người dùng"
+            placeholder="Tên người dùng"
             className="w-full p-2 mb-4 bg-gray-800 rounded border border-white text-white"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full p-2 mb-4 bg-gray-800 rounded border border-white text-white"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
@@ -69,21 +85,28 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <input
+            type="password"
+            placeholder="Xác nhận mật khẩu"
+            className="w-full p-2 mb-4 bg-gray-800 rounded border border-white text-white"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
 
           <button
             type="submit"
             className="w-full py-2 bg-green-500 hover:bg-green-600 rounded-full text-black font-bold"
           >
-            Đăng nhập
+            Đăng ký
           </button>
         </form>
 
-        <Link to="/register" className="text-center mt-4 text-gray-400 hover:text-gray-300 cursor-pointer block">
-          Bạn chưa có tài khoản, Hãy đăng ký
+        <Link to="/login" className="text-center mt-4 text-gray-400 hover:text-gray-300 cursor-pointer block">
+          Đã có tài khoản? Đăng nhập
         </Link>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
